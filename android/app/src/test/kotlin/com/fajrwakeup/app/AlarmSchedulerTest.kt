@@ -2,9 +2,11 @@ package com.fajrwakeup.app
 
 import android.app.AlarmManager
 import android.content.Context
+import android.os.Build
 import androidx.test.core.app.ApplicationProvider
 import com.fajrwakeup.app.alarm.AlarmScheduler
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -13,6 +15,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows
+import org.robolectric.annotation.Config
+import org.robolectric.shadows.ShadowAlarmManager
 
 @RunWith(RobolectricTestRunner::class)
 class AlarmSchedulerTest {
@@ -61,8 +65,33 @@ class AlarmSchedulerTest {
         assertNull(AlarmScheduler.nextTrigger(context))
     }
 
+    /**
+     * Below Android 12 (API 31) there is no exact-alarm permission, so
+     * canScheduleExact() is unconditionally true. Pinned to a pre-S SDK, which is
+     * exactly the regime this assertion describes.
+     */
     @Test
+    @Config(sdk = [Build.VERSION_CODES.O])
     fun canScheduleExact_defaultTrue() {
         assertTrue(AlarmScheduler.canScheduleExact(context))
+    }
+
+    /**
+     * On Android 12+ (API 31+), canScheduleExact() must reflect the real
+     * AlarmManager.canScheduleExactAlarms() permission state — true when granted,
+     * false when not. (Robolectric defaults this to false at API 34, which is why
+     * asserting an unconditional "true" there previously failed — the production
+     * code was correct; the old test's assumption was not.)
+     */
+    @Test
+    @Config(sdk = [Build.VERSION_CODES.TIRAMISU])
+    fun canScheduleExact_android12Plus_reflectsPermission() {
+        // Robolectric's backing field is static; set it on the class (Kotlin can't
+        // call a Java static via an instance). @Resetter restores false per test.
+        ShadowAlarmManager.setCanScheduleExactAlarms(true)
+        assertTrue(AlarmScheduler.canScheduleExact(context))
+
+        ShadowAlarmManager.setCanScheduleExactAlarms(false)
+        assertFalse(AlarmScheduler.canScheduleExact(context))
     }
 }

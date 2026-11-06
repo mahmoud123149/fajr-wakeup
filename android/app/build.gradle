@@ -19,9 +19,9 @@ if (flutterVersionName == null) { flutterVersionName = "1.0.0" }
 
 android {
     namespace = "com.fajrwakeup.app"
-    // compileSdk 34 is compatible with AGP 8.11.x. Bump to 35/36 once you need
-    // newer platform APIs; the code is forward-compatible with Android 15 behaviours.
-    compileSdk = 34
+    // compileSdk 36 is required by AGP 8.11 together with the current AndroidX /
+    // ML Kit dependencies. minSdk/targetSdk are intentionally kept lower (below).
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
