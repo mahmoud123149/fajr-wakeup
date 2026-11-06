@@ -6,11 +6,12 @@
 # This is a personal debug build (see android/app/build.gradle: the release type
 # is only ever built here as --debug, and no signing config is referenced).
 #
-# Toolchain rationale (verified against the repo's Gradle config):
-#   - Android Gradle Plugin 8.5.2  -> requires JDK 17
-#   - Gradle 8.7 (wrapper)         -> supports JDK 17
-#   - Kotlin 1.9.24, compileSdk 34, minSdk 26, targetSdk 34
-#   => Java 17 is the correct, compatible choice.
+# Toolchain rationale (verified against the repo's Gradle config and Flutter 3.47.9):
+#   - Gradle 8.14.6 (wrapper, bin) -> satisfies Flutter 3.47.9's minimum 8.14.0
+#   - Android Gradle Plugin 8.11.1 -> requires JDK 17; needs Gradle >= 8.13 (OK)
+#   - Kotlin Gradle Plugin 2.2.20  -> compatible with AGP 8.11.x and Gradle 8.14.x
+#   - compileSdk 34, minSdk 26, targetSdk 34 (unchanged)
+#   => Java 17 is the correct, compatible choice (not migrating to AGP 9).
 
 workflows:
   android-debug:
@@ -28,6 +29,14 @@ workflows:
         - $HOME/.gradle/caches        # Gradle / AGP / AndroidX / ML Kit artifacts
 
     scripts:
+      - name: Print toolchain versions
+        script: |
+          set -euo pipefail
+          echo "--- Flutter ---"
+          flutter --version
+          echo "--- Java ---"
+          java -version
+
       - name: Generate android/local.properties
         script: |
           set -euo pipefail
