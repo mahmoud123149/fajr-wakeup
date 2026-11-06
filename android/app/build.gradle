@@ -1,0 +1,110 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader("UTF-8") { reader -> localProperties.load(reader) }
+}
+
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode")
+if (flutterVersionCode == null) { flutterVersionCode = "1" }
+
+def flutterVersionName = localProperties.getProperty("flutter.versionName")
+if (flutterVersionName == null) { flutterVersionName = "1.0.0" }
+
+android {
+    namespace = "com.fajrwakeup.app"
+    // compileSdk 34 pairs cleanly with AGP 8.5.x. Bump to 35 once your AGP/SDK
+    // support it; the code is forward-compatible with Android 15 behaviours.
+    compileSdk = 34
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    defaultConfig {
+        applicationId = "com.fajrwakeup.app"
+        // minSdk 26 (Android 8.0): notification channels, adaptive icons and
+        // foreground-service lifecycle are all guaranteed, which simplifies the
+        // critical alarm path. Covers the vast majority of active devices.
+        minSdk = 26
+        targetSdk = 34
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    // Robolectric needs access to Android resources from unit tests.
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+
+    buildTypes {
+        release {
+            // Personal app: signed with the debug key so `flutter build apk` and
+            // `flutter build apk --release` both produce an installable APK out of
+            // the box. Replace with a real signing config before wider distribution.
+            signingConfig = signingConfigs.debug
+            minifyEnabled = false
+            shrinkResources = false
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1"
+
+    // AndroidX core
+    implementation "androidx.core:core-ktx:1.13.1"
+    implementation "androidx.appcompat:appcompat:1.7.0"
+    implementation "androidx.activity:activity-ktx:1.9.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.8.4"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "com.google.android.material:material:1.12.0"
+
+    // Background Adhan playback: Media3 / ExoPlayer.
+    implementation "androidx.media3:media3-exoplayer:1.3.1"
+    implementation "androidx.media3:media3-common:1.3.1"
+
+    // CameraX (live capture for the faucet challenge).
+    def cameraxVersion = "1.3.4"
+    implementation "androidx.camera:camera-core:$cameraxVersion"
+    implementation "androidx.camera:camera-camera2:$cameraxVersion"
+    implementation "androidx.camera:camera-lifecycle:$cameraxVersion"
+    implementation "androidx.camera:camera-view:$cameraxVersion"
+
+    // On-device image labeling using Google's BUNDLED default model (ships inside
+    // the APK, works offline immediately, no custom model / training required).
+    implementation "com.google.mlkit:image-labeling:17.0.9"
+
+    // Unit tests (JVM + Robolectric for Android framework classes).
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1"
+    testImplementation "androidx.test:core:1.6.1"
+    testImplementation "androidx.test.ext:junit:1.2.1"
+    testImplementation "org.robolectric:robolectric:4.12.2"
+    testImplementation "org.mockito:mockito-core:5.11.0"
+}

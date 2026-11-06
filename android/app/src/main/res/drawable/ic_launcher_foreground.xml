@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple gold crescent + star on transparent, sized for an adaptive-icon
+     foreground (108dp canvas, ~72dp safe zone). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Crescent: a filled circle with an offset circle subtracted via even-odd. -->
+    <path
+        android:fillColor="#D4AF37"
+        android:fillType="evenOdd"
+        android:pathData="M60,30
+            a24,24 0 1,0 0,48
+            a24,24 0 1,0 0,-48
+            Z
+            M66,34
+            a20,20 0 1,1 0,40
+            a24,24 0 1,0 0,-40
+            Z" />
+    <!-- Five-pointed star accent. -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M44,46 l2.6,5.3 5.8,0.8 -4.2,4.1 1,5.8 -5.2,-2.7 -5.2,2.7 1,-5.8 -4.2,-4.1 5.8,-0.8 Z" />
+</vector>

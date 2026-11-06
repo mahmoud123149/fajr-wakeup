@@ -1,0 +1,29 @@
+# ============================================================================
+# Fajr WakeUp - on-device faucet classifier: training requirements
+# ============================================================================
+# These versions are a KNOWN-GOOD baseline for building a TensorFlow Lite model
+# with embedded Google ML Kit metadata. Install them inside a dedicated venv.
+#
+# IMPORTANT - PYTHON VERSION:
+#   TensorFlow does NOT support Python 3.12+ for this stack, and this machine's
+#   system Python 3.14 is far too new (TF has no wheels for it). You MUST use
+#   Python 3.10 or 3.11:
+#
+#       python3.10 -m venv .venv          # or python3.11
+#       source .venv/bin/activate
+#       pip install --upgrade pip
+#       pip install -r requirements.txt
+#
+# Notes on the pins:
+#   - tflite-support 0.4.4 requires numpy < 2, so numpy is pinned below 2.0.
+#   - protobuf 3.20.3 satisfies BOTH tensorflow 2.15 and tflite-support 0.4.4.
+#   - If pip's resolver ever complains, these are the first versions to relax.
+# ============================================================================
+
+tensorflow==2.15.1        # CPU build is fine; provides tf.lite + tf.keras
+tflite-support==0.4.4     # metadata_writers -> ML Kit-compatible .tflite metadata
+numpy==1.26.4             # <2.0 for tflite-support / TF 2.15 compatibility
+protobuf==3.20.3          # common version accepted by TF 2.15 and tflite-support
+Pillow==10.4.0            # image decoding
+scikit-learn==1.5.2       # classification_report, confusion_matrix, metrics
+matplotlib==3.9.2         # confusion-matrix and threshold plots

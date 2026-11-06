@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Shown while the Flutter engine warms up (window background). -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+
+    <!-- Applied to the Flutter activity once it is running. -->
+    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@color/navy_background</item>
+    </style>
+
+    <!-- Native full-screen alarm activity. -->
+    <style name="Theme.FajrAlarm" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@color/navy_background</item>
+        <item name="colorPrimary">@color/gold_accent</item>
+        <item name="colorOnPrimary">@color/navy_background</item>
+        <item name="android:statusBarColor">@color/navy_background</item>
+        <item name="android:navigationBarColor">@color/navy_background</item>
+        <item name="android:windowShowWallpaper">false</item>
+    </style>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">فجر ويك أب</string>
+
+    <string name="alarm_notification_channel_name">منبّه الفجر</string>
+    <string name="alarm_notification_channel_desc">يشغّل الأذان عند دخول وقت الفجر</string>
+
+    <string name="alarm_title">حان وقت صلاة الفجر</string>
+    <string name="alarm_message">حان وقت صلاة الفجر، قم للوضوء.</string>
+    <string name="alarm_open_challenge">التحقق من مكان الوضوء</string>
+    <string name="alarm_emergency_stop">إيقاف طارئ</string>
+    <string name="alarm_capture">التقاط الصورة</string>
+    <string name="alarm_retake">إعادة الالتقاط</string>
+    <string name="alarm_cancel">إلغاء</string>
+    <string name="alarm_camera_instruction">وجّه الكاميرا نحو الحنفية والمغسلة بشكل واضح.</string>
+    <string name="alarm_verifying">جارٍ تحليل الصورة…</string>
+    <string name="alarm_success">تبارك الله، أعانك الله على صلاة الفجر.</string>
+    <string name="alarm_rejected">لم يتم رصد مغسلة في الصورة. وجّه الكاميرا نحو المغسلة والحنفية وأعد المحاولة.</string>
+    <string name="alarm_low_confidence">قد تكون هناك مغسلة لكن درجة الثقة منخفضة. اقترب أكثر وثبّت الكاميرا وأعد المحاولة.</string>
+    <string name="alarm_no_labels">لم يتم رصد أي تصنيفات.</string>
+    <string name="alarm_camera_denied">إذن الكاميرا مطلوب للتحقق. امنحه من الإعدادات، أو استخدم الإيقاف الطارئ.</string>
+    <string name="alarm_error">حدث خطأ أثناء التعرّف. أعد المحاولة أو استخدم الإيقاف الطارئ.</string>
+    <string name="alarm_playback_on">الأذان قيد التشغيل</string>
+    <string name="alarm_playback_waiting">في انتظار إعادة تشغيل الأذان…</string>
+</resources>

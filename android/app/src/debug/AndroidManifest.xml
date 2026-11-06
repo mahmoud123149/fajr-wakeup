@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Flutter tooling (hot reload, VM service) needs INTERNET in debug/profile.
+         This permission is NOT present in the release build. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

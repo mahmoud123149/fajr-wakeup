@@ -1,0 +1,18 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    # Treat a few common foot-guns as warnings so CI/local analysis surfaces them.
+    avoid_print: warning
+    unused_import: warning
+  exclude:
+    - "**/*.g.dart"
+    - build/**
+    - android/**
+
+linter:
+  rules:
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    avoid_relative_lib_imports: true
+    always_declare_return_types: true

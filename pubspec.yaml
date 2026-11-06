@@ -1,0 +1,65 @@
+name: fajr_wakeup
+description: "Fajr WakeUp - a personal, offline, on-device Islamic Fajr alarm that repeats the Adhan until an AI faucet-recognition challenge is passed."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+# NOTE ON VERSIONS:
+# These are known-good stable ranges as of 2026-01. Because this machine has no
+# Flutter toolchain, `flutter pub get` was NOT run here. Run it on your machine;
+# if a constraint fails, run `flutter pub upgrade --major-versions` and re-test.
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # Prayer time calculation (pure-Dart Adhan port). Offline, no network.
+  adhan: ^2.0.0
+
+  # Local SQLite database + filesystem paths.
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  path_provider: ^2.1.4
+
+  # Device location (with manual lat/long fallback in the UI).
+  geolocator: ^13.0.1
+
+  # Runtime permissions (exact alarm, notifications, camera, location).
+  permission_handler: ^11.3.1
+
+  # Import a user-selected Adhan audio file via the system document picker.
+  file_picker: ^8.1.2
+
+  # In-app preview playback for the Adhan settings screen (the real alarm
+  # playback is native Media3/ExoPlayer, this is only for previewing).
+  just_audio: ^0.9.40
+
+  # Simple state management.
+  provider: ^6.1.2
+
+  # Date/number formatting (Arabic locale). Range covers the intl version that
+  # flutter_localizations pins across recent Flutter releases (0.19.x / 0.20.x).
+  intl: ">=0.19.0 <0.21.0"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/models/
+  # Arabic font (Cairo) is recommended for clean RTL typography. Drop the .ttf
+  # files into assets/fonts/ and uncomment to bundle; the app falls back to the
+  # platform font if these are absent.
+  # fonts:
+  #   - family: Cairo
+  #     fonts:
+  #       - asset: assets/fonts/Cairo-Regular.ttf
+  #       - asset: assets/fonts/Cairo-Bold.ttf
+  #         weight: 700

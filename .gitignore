@@ -1,0 +1,68 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Android / Gradle
+android/.gradle/
+android/local.properties
+android/key.properties
+android/app/release/
+android/captures/
+*.keystore
+*.jks
+
+# Local machine config
+local.properties
+
+# The trained model is personal + large; do not commit it.
+android/app/src/main/assets/faucet_classifier.tflite
+assets/models/faucet_classifier.tflite
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# Personal training data
+ml_training/dataset/
+
+# Local databases and logs
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# Python generated files
+__pycache__/
+*.py[cod]
+
+# Flutter generated files
+.flutter-plugins-dependencies
+.dart_tool/
+
+# Android machine-specific configuration
+**/local.properties
+**/.gradle/

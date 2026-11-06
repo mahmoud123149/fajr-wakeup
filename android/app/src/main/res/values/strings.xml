@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default (English) fallback strings. The app UI is Arabic-first; the
+         Arabic translations live in values-ar/strings.xml and are used on
+         Arabic-locale devices. The alarm activity also forces Arabic text
+         regardless of device locale (see AlarmActivity). -->
+    <string name="app_name">Fajr WakeUp</string>
+
+    <string name="alarm_notification_channel_name">Fajr Alarm</string>
+    <string name="alarm_notification_channel_desc">Plays the Adhan at Fajr time</string>
+
+    <string name="alarm_title">Time for Fajr prayer</string>
+    <string name="alarm_message">It is time for Fajr. Get up for Wudu.</string>
+    <string name="alarm_open_challenge">Verify the Wudu location</string>
+    <string name="alarm_emergency_stop">Emergency stop</string>
+    <string name="alarm_capture">Capture</string>
+    <string name="alarm_retake">Retake</string>
+    <string name="alarm_cancel">Cancel</string>
+    <string name="alarm_camera_instruction">Point the camera clearly at the faucet and the sink.</string>
+    <string name="alarm_verifying">Analysing the image…</string>
+    <string name="alarm_success">Blessed be God. May God help you to pray Fajr.</string>
+    <string name="alarm_rejected">No sink was detected in the image. Point the camera at the sink and faucet and try again.</string>
+    <string name="alarm_low_confidence">A sink may be present but confidence is too low. Move closer, steady the camera and retry.</string>
+    <string name="alarm_no_labels">No labels detected.</string>
+    <string name="alarm_camera_denied">Camera permission is required for verification. Grant it in Settings, or use emergency stop.</string>
+    <string name="alarm_error">A recognition error occurred. Try again or use emergency stop.</string>
+    <string name="alarm_playback_on">Adhan is playing</string>
+    <string name="alarm_playback_waiting">Waiting before repeating the Adhan…</string>
+</resources>
